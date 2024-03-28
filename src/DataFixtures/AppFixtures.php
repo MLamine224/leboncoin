@@ -19,18 +19,19 @@ class AppFixtures extends Fixture
         
         // Création de 10 utilisateurs
         $users = [];
+       /* JE RETIRE PROVISOIREMENT LES FIXTURES POUR LA TABLE USER ...
         for ($i = 0; $i < 10; $i++) {
             $user = new User();
             $user->setFirstName($faker->firstName())
                  ->setLastName($faker->lastName())
                  ->setEmail($faker->email())
                  ->setRoles(['ROLE_USER'])
-                 ->setIsAdmin(false)
-                 ->setPlainPassword($faker->password(8, 20));
+                 ->setPassword($faker->password(8, 20))
+                 ->setUsername($faker->userName());
 
             $users[] = $user;
             $manager->persist($user);
-        }
+        }*/
 
         // Création de Sites Géographiques
         $sites = [];

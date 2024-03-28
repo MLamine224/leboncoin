@@ -7,97 +7,42 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Validator\Constraints as Assert;
-
-
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity('email')]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
-#[ORM\EntityListeners(['App\EntityListener\UserListener'])]
-class User implements UserInterface, PasswordAuthenticatedUserInterface {
+class User implements UserInterface, PasswordAuthenticatedUserInterface
+{
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
-    #[Assert\Length(min: 2, max: 25)]
-    private ?string $firstName = null;
-
-    #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
-    #[Assert\Length(min: 2, max: 50)]
-    private ?string $lastName = null;
-
     #[ORM\Column(length: 180)]
-    #[Assert\Email()]
-    #[Assert\Length(min: 2, max: 50)]
     private ?string $email = null;
 
     /**
      * @var list<string> The user roles
      */
     #[ORM\Column]
-    #[Assert\NotNull]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
-    #[Assert\NotBlank]
     private ?string $password = null;
 
-    #[ORM\Column]
-    #[Assert\NotNull]
-    private ?\DateTimeImmutable $createdAt;
+    #[ORM\Column(length: 255)]
+    private ?string $firstName = null;
 
-    #[ORM\Column]
-    #[Assert\NotNull]
-    private ?\DateTimeImmutable $updateAt;
+    #[ORM\Column(length: 255)]
+    private ?string $lastName = null;
 
-    #[ORM\Column]
-    #[Assert\NotNull]
-    private ?bool $isAdmin;
-
-    private ?string $plainPassword = null;
-
-    public function __construct() {
-        $this->createdAt = new \DateTimeImmutable();
-        $this->updateAt =  new \DateTimeImmutable();
-    }
-
-
+    #[ORM\Column(length: 255)]
+    private ?string $username = null;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getFirstName(): ?string
-    {
-        return $this->firstName;
-    }
-
-    public function setFirstName(string $firstName): static
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    public function getLastName(): ?string
-    {
-        return $this->lastName;
-    }
-
-    public function setLastName(string $lastName): static
-    {
-        $this->lastName = $lastName;
-
-        return $this;
     }
 
     public function getEmail(): ?string
@@ -124,6 +69,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface {
 
     /**
      * @see UserInterface
+     *
      * @return list<string>
      */
     public function getRoles(): array
@@ -132,7 +78,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface {
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
 
-        if(isIsAdmin()) {
+        if($this->email === "jtest@doe.fr"){
             $roles[] = 'ROLE_ADMIN';
         }
 
@@ -170,55 +116,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface {
     public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
-        $this->plainPassword = null;
+        // $this->plainPassword = null;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getFirstName(): ?string
     {
-        return $this->createdAt;
+        return $this->firstName;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    public function setFirstName(string $firstName): static
     {
-        $this->createdAt = $createdAt;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
-    public function getUpdateAt(): ?\DateTimeImmutable
+    public function getLastName(): ?string
     {
-        return $this->updateAt;
+        return $this->lastName;
     }
 
-    public function setUpdateAt(\DateTimeImmutable $updateAt): static
+    public function setLastName(string $lastName): static
     {
-        $this->updateAt = $updateAt;
+        $this->lastName = $lastName;
 
         return $this;
     }
 
-    public function isIsAdmin(): ?bool
+    public function getUsername(): ?string
     {
-        return $this->isAdmin;
+        return $this->username;
     }
 
-    public function setIsAdmin(bool $isAdmin): static
+    public function setUsername(string $username): static
     {
-        $this->isAdmin = $isAdmin;
+        $this->username = $username;
 
         return $this;
     }
-
-    public function getPlainPassword(): string
-    {
-        return $this->plainPassword;
-    }
-
-    public function setPlainPassword(?string $plainPassword): self
-    {
-        $this->plainPassword = $plainPassword;
-    
-        return $this;
-    }
-    
 }
