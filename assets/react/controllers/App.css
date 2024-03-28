@@ -1,0 +1,79 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 10px auto;
+  }
+  
+  .liste-annonces {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .annonce {
+    background-color:#ffffff;
+    padding: 20px;
+    margin-top: 20px; 
+    margin-bottom: 20px; 
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+  }
+  .annonce:hover {
+    transform: scale(1.02);
+  }
+  
+  h2 {
+    color: #333333;
+  }
+  
+  h1 {
+    font-family: 'Arial', sans-serif;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    background-color: #ff9100;
+    box-shadow: 0 4px 8px rgb(156, 156, 156);
+  }
+  
+  p {
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  .barre-recherche input {
+    padding: 10px;
+    margin-right: 8px;
+  }
+  
+  .barre-recherche button {
+    padding: 11px 10px;
+    background-color: #f3900e;
+    color: rgb(0, 0, 0);
+    border: none;
+    cursor: pointer;
+  }
+  
+  label {
+    margin-right: 10px;
+  }
+  
+  select {
+    padding: 8px;
+    margin-right: 10px;
+  }
+  
+  button[type="button"] {
+    padding: 8px 12px;
+    background-color: #f3900e;
+    color: rgb(0, 0, 0);
+    border: none;
+    cursor: pointer;
+  }
+  
