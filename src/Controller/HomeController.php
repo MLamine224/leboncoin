@@ -20,7 +20,7 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $hasher): Response
     {
-        $user = new User();
+        /*$user = new User();
         $user->setEmail('jtest@doe.fr')
             ->setPassword($hasher->hashPassword($user,'1234'))
             ->setRoles([])
@@ -29,7 +29,7 @@ class HomeController extends AbstractController
             ->setLastName("belhocine");
             
         $em->persist($user);
-        $em->flush();
+        $em->flush();*/
         return $this->render("test.html.twig");
     }
 }
