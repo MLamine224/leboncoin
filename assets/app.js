@@ -1,50 +1,34 @@
-
+// On doit importer les css ici ?
 import './styles/app.css';
+import './styles/auth.css';
 
-
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import Hello from './react/controllers/Hello.jsx'; 
-// // import MyModal from './react/controllers/Modal.jsx';
-// import Acceuil from './react/controllers/entre.jsx';
-
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     const helloContainer = document.getElementById('hello-react');
-//     const modalContainer = document.getElementById('modal');
-//     const acceuilContainer = document.getElementById('acceuil');
-
-//     if (helloContainer) {
-//         ReactDOM.render(<Hello fullName="Lamine" />, helloContainer);
-//     }
-
-//     // if (modalContainer) {
-//     //     ReactDOM.render(<MyModal />, modalContainer);
-//     // }
-
-//     if (acceuilContainer) {
-//         ReactDOM.render(<Acceuil />, acceuilContainer);
-//     }
-// });
-
-
-// app.js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Acceuil from './react/controllers/entre.jsx';
+import Login from './react/controllers/Login.jsx'
+import Register from './react/controllers/Register.jsx'
 import Hello from './react/controllers/Hello.jsx';
 // import MyModal from './MyModal';
-
-ReactDOM.render(
-    <Router>
-      <Routes>
-        <Route path="/" element={<Acceuil />} />
-        <Route path="/hello" element={<Hello />} />
-        {/* <Route path="/modal" element={<MyModal />} /> */}
-      </Routes>
-    </Router>,
-    document.getElementById('root')
-  );
+const router = createBrowserRouter([
+  {
+    path: "/react",
+    element: <Acceuil />,
+  },
+  {
+    path: "/login",
+    element:<Login />,
+  },
+  {
+    path:"/register",
+    element:<Register/>
+  }
+]);
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <RouterProvider router={router} />
+  </React.StrictMode>
+);
 
   
