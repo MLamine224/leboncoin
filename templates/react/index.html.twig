@@ -1,14 +1,14 @@
+{# templates/react/index.html.twig #}
+
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ReactController!{% endblock %}
+{% block title %}Acceuil{% endblock %}
 
 {% block body %}
-        {# <div class="flex justify-center items-center" id="hello-react">
-        </div>
-
-        <div id="modal"></div>
-        <div class="flex justify-end items-start mt-4 ml-4" id="menu"></div> #}
-        <div id="root"></div>
-
-
+<script>
+    // Convertit les annonces JSON en objet JavaScript
+        var annoncesData = {{ annonces|json_encode|raw }};
+</script>
+<div id="root"></div>
 {% endblock %}
+

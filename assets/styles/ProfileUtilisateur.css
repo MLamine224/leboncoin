@@ -1,0 +1,180 @@
+.rootProfile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f7f7f7;
+  min-height: 100vh;
+  padding-top: 5rem;
+  padding-bottom: 2rem;
+}
+
+.profileContainer {
+  display: flex;
+  justify-content: space-around;
+  width: 97%;
+  align-items: center;
+}
+
+.mangeAccount {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.header-root {
+  width: 100%;
+  text-align: center;
+  background-color: white;
+  padding: 1rem 0 1rem;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+.leftContainer {
+  max-width: 27vmax;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 18rem;
+  padding: 0;
+}
+
+.rightContainer {
+  width: 58vmax;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 3rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profileHeadingLeft {
+  margin-top: 7rem;
+  font-size: 1.6rem !important;
+  font-weight: 800 !important;
+  margin-bottom: 1rem !important;
+  color: #212121 !important;
+  background-color: inherit !important;
+  text-transform: uppercase !important;
+}
+.profileSection {
+  background-color: white;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1.5rem 2.5rem 3rem 0.5rem;
+  border-radius: 3px;
+  margin-bottom: 1rem;
+  text-align: center;
+  padding-top: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.mesAnnonces {
+  width: 28vmax;
+  background-color: white !important;
+  text-align: center;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 3px !important;
+}
+
+.AjoutAnnonce {
+  width: 28vmax;
+  margin-top: 1rem;
+  background-color: white !important;
+  text-align: center;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 3px !important;
+}
+
+.profileSubHeading {
+  font-size: 1rem !important;
+  color: black !important;
+  font-weight: bold !important;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0;
+}
+.greeting {
+  font-size: 20px;
+  color: #414141;
+  font-weight: 500 !important;
+}
+
+.leftDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 23vmax;
+}
+
+.profileText {
+  margin: 5px;
+  font-size: 1rem !important;
+  color: #414141;
+}
+
+.profileHeading {
+  font-size: 18px !important;
+  font-weight: 900 !important;
+  margin-bottom: 1rem !important;
+  color: #212121 !important;
+  text-transform: uppercase !important;
+}
+.profileButton {
+  width: 50% !important;
+  padding: 0.5rem !important;
+  margin: 1rem !important;
+  background-color: #414141 !important;
+  color: #fff !important;
+}
+
+.rightContainer {
+  padding: 20px;
+}
+
+.details {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.profileText2 {
+  font-size: 16px;
+  color: #414141;
+  font-weight: 500 !important;
+}
+
+.profileText3 {
+  font-size: 14px;
+  color: black;
+  width: 80%;
+  margin-top: -14px;
+}
+.headingProfile {
+  text-align: center;
+  font-weight: 900 !important;
+  font-size: 30px !important;
+  text-transform: uppercase;
+  color: #414141;
+}
+
+.ordersButton {
+  width: 100%;
+  padding: 0.5rem !important;
+  margin-bottom: 8px !important;
+  background-color: #414141 !important;
+  color: #fff !important;
+}
+
+.ordersButton:hover {
+  background-color: #ed1c24 !important;
+}
+
+.profileButton:hover {
+  background-color: #ed1c24 !important;
+}

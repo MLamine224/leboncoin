@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum FurnitureConditionEnum: string
+enum FurnitureCondition: string
 {
     case NEW = 'Neuf';
     case USED = 'Usagé';

@@ -1,5 +1,5 @@
 
-// import './styles/app.css';
+import './styles/app.css';
 // import './styles/auth.css';
 // import './styles/mesAnnonces.css';
 // import './styles/ProfileUtilisateur.css';
@@ -180,20 +180,67 @@
 // );
 
   
+
+
+
+
 // On doit importer les css ici ?
-import './styles/app.css';
-import './styles/auth.css';
+// import './styles/app.css';
+// import './styles/auth.css';
+
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+// import { createBrowserRouter, RouterProvider } from "react-router-dom";
+// import Acceuil from './react/controllers/Acceuil.jsx';
+// import Login from './react/controllers/Login.jsx'
+// import Register from './react/controllers/Register.jsx'
+// const router = createBrowserRouter([
+//   {
+//     path: "/react",
+//     element: <Acceuil />,
+//   },
+//   {
+//     path: "/login",
+//     element:<Login />,
+//   },
+//   {
+//     path:"/register",
+//     element:<Register/>
+//   },
+//   {
+//     path: "/Annonces",
+//     element:<List />,
+//   },
+// ]);
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+// root.render(
+//   <React.StrictMode>
+//     <RouterProvider router={router} />
+//   </React.StrictMode>
+// );
+
+
+// assets/js/app.js
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Acceuil from './react/controllers/App.jsx';
-import Login from './react/controllers/Login.jsx'
-import Register from './react/controllers/Register.jsx'
+import Acceuil from './react/controllers/Acceuil.jsx';
+import Login from './react/controllers/Login.jsx';
+import Register from './react/controllers/Register.jsx';
+import Add from './react/controllers/addAnnonce.jsx';
+
+
+// S'assurez d'avoir un composant Acceuil capable de recevoir 
+// les annonces en tant que props
+const annonces = JSON.parse(window.annoncesData || '[]');
+
+// console.log(annonces); 
+
 const router = createBrowserRouter([
   {
     path: "/react",
-    element: <Acceuil />,
+    element: <Acceuil annoncesInitiales={annonces} />,
   },
   {
     path: "/login",
@@ -201,9 +248,14 @@ const router = createBrowserRouter([
   },
   {
     path:"/register",
-    element:<Register/>
-  }
+    element:<Register/>,
+  },
+  {
+    path:"/add",
+    element:<Add/>
+  },
 ]);
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>

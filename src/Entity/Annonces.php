@@ -6,6 +6,8 @@ use App\Enums\MovementCondition;
 use App\Enums\AnnouncementStatus;
 use App\Enums\FurnitureCondition;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use App\Repository\AnnoncesRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -42,6 +44,21 @@ class Annonces
     #[Assert\Positive]
     private ?float $Height = null;
 
+    #[ORM\Column(type: "text")]
+    #[Assert\NotBlank(message: "La description de l'annonce ne peut pas être vide.")]
+    #[Assert\Length(
+        min: 10,
+        max: 1000,
+        minMessage: "La description doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "La description ne peut pas dépasser {{ limit }} caractères."
+    )]
+    private ?string $description = null;
+
+    #[ORM\Column(type: 'decimal', precision: 10, scale: 2)]
+    #[Assert\NotBlank]
+    #[Assert\Positive]
+    private ?float $price = null;
+
     #[ORM\Column]
     private ?bool $isDismountable = null;
 
@@ -73,9 +90,39 @@ class Annonces
     #[ORM\JoinColumn(nullable: false)]
     private ?GeographicSite $siteGeographique = null;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Photo", mappedBy="annonce")
+     */
+    private $photos;
+
     public function __construct() {
         $this->announcementDate = new \DateTimeImmutable();
+        $this->photos = new ArrayCollection();
     }
+
+    // Ajouter et supprimer des photos 
+    public function addPhoto(Photo $photo): self
+    {
+        if (!$this->photos->contains($photo)) {
+            $this->photos[] = $photo;
+            $photo->setAnnonce($this);
+        }
+
+        return $this;
+    }
+
+    public function removePhoto(Photo $photo): self
+    {
+        if ($this->photos->contains($photo)) {
+            $this->photos->removeElement($photo);
+            // Définir le côté inverse
+            if ($photo->getAnnonce() === $this) {
+                $photo->setAnnonce(null);
+            }
+        }
+        return $this;
+    }
+
 
 
     public function getId(): ?int
@@ -142,6 +189,31 @@ class Annonces
 
         return $this;
     }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(float $price): self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
 
     public function isIsDismountable(): ?bool
     {

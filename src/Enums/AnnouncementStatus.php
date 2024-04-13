@@ -1,7 +1,7 @@
 <?php
 namespace App\Enums;
 
-enum AnnouncementStatusEnum: string
+enum AnnouncementStatus: string
 {
     case ACTIVE = 'active';
     case ARCHIVED = 'archivé';

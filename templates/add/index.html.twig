@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+{# {% block title %}Add Annonce{% endblock %} #}
+<head>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+{% block body %}
+    {% if app.user %}
+        <div class="mb-3">
+            Bienvenue {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
+        </div>
+    {% endif %}
+    
+    <form method="post" id="annonceForm">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('create_annonce') }}">
+        
+        <div id="root"></div>
+    </form>
+{% endblock %}
+</body>
+</html>
+
