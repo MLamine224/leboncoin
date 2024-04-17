@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Toutes les Annonces{% endblock %}
+
+{% block body %}
+<script>
+    var annoncesAllData = {{ annoncesAll|json_encode|raw }};
+</script>
+<div id="root"></div>
+{% endblock %}

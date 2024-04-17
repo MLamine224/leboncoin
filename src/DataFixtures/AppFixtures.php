@@ -65,17 +65,21 @@ class AppFixtures extends Fixture
 
                 for ($j = 0; $j < 5; $j++) {
                     $imagesDisponibles = [
-                        '/home/lamine/Projet Annuel/im1.jpg',
-                        '/home/lamine/Projet Annuel/im2.jpg',
-                        '/home/lamine/Projet Annuel/im3.jpg',
-                        '/home/lamine/Projet Annuel/im4.jpg',
-                        '/home/lamine/Projet Annuel/im5.jpg',
-                        '/home/lamine/Projet Annuel/im6.jpg',
+                        'https://www.usinebureau.com/images/products/caisson-deskissimo-5802.jpg',
+                        'https://www.burolia.fr/images/products/rangements-etner-31772z.jpg',
+                        'https://www.usinebureau.com/images/products/caisson-deskissimo-181382.jpg',
+                        'https://www.bureau-du-berger.fr/uploads/files/mobilier-d-universite-pour-amphitheatre-et-salle-d-un-niveau-8353.jpg',
+                        'https://www.leyform.fr/tables-pour-collectivites/gallery/tables-et-bancs-des-universites-p-mobilier-scolaire-img-02.jpg',
+                        'https://img.aosomcdn.com/thumbnail/100/n0/product/2024/01/10/Vq1ba318cf2b7b0e8.jpg',
+                        'https://st4.depositphotos.com/1318729/21548/i/1600/depositphotos_215487530-stock-photo-school-college-desk-table-chair.jpg',
                     ];
+
+                    $randomImageKey = array_rand($imagesDisponibles);
+                    $randomImageUrl = $imagesDisponibles[$randomImageKey];
 
                     $photo = new Photo();
                     $photo->setAnnonce($annonce)
-                          ->setPhotoPath('im1.jpg');
+                          ->setPhotoPath($randomImageUrl);
                     $manager->persist($photo);
                     $annonce->addPhoto($photo);
                 }

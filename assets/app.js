@@ -229,13 +229,16 @@ import Acceuil from './react/controllers/Acceuil.jsx';
 import Login from './react/controllers/Login.jsx';
 import Register from './react/controllers/Register.jsx';
 import Add from './react/controllers/addAnnonce.jsx';
+import All from './react/controllers/ListeAnnonces.jsx';
+import Detail from './react/controllers/detailsAnnonce.jsx';
 
 
 // S'assurez d'avoir un composant Acceuil capable de recevoir 
 // les annonces en tant que props
 const annonces = JSON.parse(window.annoncesData || '[]');
-
-// console.log(annonces); 
+const annoncesAll = JSON.parse(window.annoncesAllData || '[]');
+const annonceDetail = JSON.parse(window.annonceDetailData || '{}');
+console.log(annonces); 
 
 const router = createBrowserRouter([
   {
@@ -243,11 +246,19 @@ const router = createBrowserRouter([
     element: <Acceuil annoncesInitiales={annonces} />,
   },
   {
+    path:"/allAnnonces",
+    element: <All allAnnonces={annoncesAll} />,
+  },
+  {
+    path: "/detailAnnonce/:id",
+    element: <Detail annonceDetail={annonceDetail} />,
+  },
+  {
     path: "/login",
     element:<Login />,
   },
   {
-    path:"/register",
+    path:"/register", 
     element:<Register/>,
   },
   {

@@ -34,22 +34,31 @@ const Acceuil = ({ annoncesInitiales }) => {
 
     // Application du filtre
     if (filtre) {
-      if (filtre === "demontable") {
-        resultats = resultats.filter(annonce => annonce.isDismountable);
-      } else if (filtre === "nonDemontable") {
-        resultats = resultats.filter(annonce => !annonce.isDismountable);
-      } else if (filtre === "neuf") {
-        resultats = resultats.filter(annonce => annonce.furnitureCondition === "Neuf");
-      } else if (filtre === "usage") {
-        resultats = resultats.filter(annonce => annonce.furnitureCondition === "Usagé");
-      } else if (filtre === "endommage") {
-        resultats = resultats.filter(annonce => annonce.furnitureCondition === "Endommagé");
+      switch (filtre) {
+        case "demontable":
+          resultats = resultats.filter(annonce => annonce.isDismountable);
+          break;
+        case "nonDemontable":
+          resultats = resultats.filter(annonce => !annonce.isDismountable);
+          break;
+        case "neuf":
+          resultats = resultats.filter(annonce => annonce.furnitureCondition === "Neuf");
+          break;
+        case "usage":
+          resultats = resultats.filter(annonce => annonce.furnitureCondition === "Usagé");
+          break;
+        case "endommage":
+          resultats = resultats.filter(annonce => annonce.furnitureCondition === "Endommagé");
+          break;
+        default:
+          // Aucune action si le filtre n'est pas reconnu
+          break;
       }
     }
 
     // Application du tri
     return resultats.sort((a, b) => {
-      if (optionTri === "prixCroissant") return a.price - b.price;
+      if (optionTri === "prixCroissant")   return a.price - b.price;
       if (optionTri === "prixDecroissant") return b.price - a.price;
       return 0;
     });
@@ -114,10 +123,9 @@ const Acceuil = ({ annoncesInitiales }) => {
                 <option value="">Aucun filtre</option>
                 <option value="demontable">Démontable</option>
                 <option value="nonDemontable">Non Démontable</option>
-                <option value="etatNeuf">État Neuf</option>
-                <option value="etatUsé">État Usé</option>
-                <option value="etatEndomagé">État Endommagé</option>
-                <option value="date">Date</option>
+                <option value="neuf">État Neuf</option>
+                <option value="usage">État Usé</option>
+                <option value="endommage">État Endommagé</option>
               </select>
             </div>
 
@@ -163,12 +171,14 @@ const Acceuil = ({ annoncesInitiales }) => {
       {annoncesFiltrees.map((annonce) => (
         <div key={annonce.id} className="group relative bg-white p-4 rounded-lg shadow space-y-2">
           {/* Vérifier si l'annonce a des photos */}
-          {annonce.photos && annonce.photos.length > 0 ? (
+          {/* Debugging pour vérifier les données des photos */}
+          
+          {/* {annonce.photos && annonce.photos.length > 0 ? (
             // Itérer sur la collection de photos et afficher chaque photo
             annonce.photos.map((photo, index) => (
               <div key={index} className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md group-hover:opacity-75">
                 <img
-                  src={photo.photoPath} 
+                  src={photo.photoPath} // Assurez-vous que 'photoPath' est correctement défini dans vos données
                   alt={`Photo ${index + 1} de ${annonce.furnitureType}`} 
                   className="h-full w-full object-cover object-center"
                 />
@@ -179,17 +189,22 @@ const Acceuil = ({ annoncesInitiales }) => {
             <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-100 flex items-center justify-center">
               <span>Pas d'image disponible</span>
             </div>
-          )}
+          )} */}
+
+            <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md group-hover:opacity-75">
+              <img
+                src= 'https://www.burolia.fr/images/products/rangements-etner-31772z.jpg'
+                alt= {annonce.furnitureType}
+                className="h-full w-full object-cover object-center"
+              />
+            </div>
+
+
           <h3 className="text-lg text-gray-900 font-semibold">{annonce.furnitureType}</h3>
           <p className="text-gray-500">{annonce.Width} x {annonce.Length} x {annonce.Height} cm</p>
           <p className="text-gray-900">{annonce.price} €</p>
           {/* Afficher la date de l'annonce */}
           <p className="text-sm text-gray-500">Date de mise en ligne: {new Date(annonce.announcementDate).toLocaleDateString()}</p>
-          {/* Afficher le lieu de stockage */}
-          {/* <p className="text-sm text-gray-500">Lieu: {annonce.storageLocation}</p> */}
-          {/* Conditions de déplacement */}
-          {/* <p className="text-sm text-gray-500">À récupérer: {annonce.movementCondition}</p> */}
-          {/* État de l'article */}
           <p className={`text-sm ${
               annonce.furnitureCondition === 'Neuf' ?  'text-green-500' :
               annonce.furnitureCondition === 'Usagé' ? 'text-orange-500' :
@@ -207,9 +222,6 @@ const Acceuil = ({ annoncesInitiales }) => {
             </button>
           </div>
           {/* Si l'annonce est démontable ou non */}
-          {/* {annonce.isDismountable && (
-            <p className="text-sm text-gray-500">Démontable</p>
-          )} */}
           {/* Bouton pour voir plus de détails ou contacter le vendeur */}
           <a href={`/annonces/${annonce.id}`} className="text-indigo-600 hover:text-indigo-900 text-sm font-semibold">
             Voir détails
@@ -219,7 +231,7 @@ const Acceuil = ({ annoncesInitiales }) => {
           </div>
           {/* Bouton pour voir plus d'annonces */}
           <Link
-          to="/ListeAnnonces"
+          to="/allAnnonces"
           className="flex items-center justify-center space-x-2 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300"
         >
           <span>Voir plus d'annonces</span>

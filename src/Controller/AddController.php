@@ -13,8 +13,6 @@ class AddController extends AbstractController
     #[Route('/add', name: 'app_add')]
     public function index(): Response
     {
-        // $this->getUser();
-        //dd($this->getUser());
         return $this->render('add/index.html.twig', [
             'controller_name' => 'AddController',
         ]);
